@@ -2,7 +2,7 @@
 
 My kit for solo hackathons with AI agents. Short in-person events, 24 to 48 hour weekends, and online multi-day builds.
 
-Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizarazo/hackathon-starter-kit). My fork of it stays as a reference.
+Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizarazo/hackathon-starter-kit).
 
 ## Use it
 
