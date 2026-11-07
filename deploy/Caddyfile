@@ -1,0 +1,17 @@
+# The host and app name placeholders below are filled in by scripts/deploy.sh. Caddy gets the HTTPS cert itself.
+APP_HOST {
+	# Access log to journald: journalctl -u caddy -f
+	log
+	# The API on the same origin, so the SPA's default /api works with no build-time URL.
+	# handle_path strips /api: the browser calls /api/x, the service serves /x.
+	handle_path /api/* {
+		reverse_proxy 127.0.0.1:3000
+	}
+	# The SPA.
+	handle {
+		root * /srv/APP_NAME/web
+		encode gzip
+		try_files {path} /index.html
+		file_server
+	}
+}

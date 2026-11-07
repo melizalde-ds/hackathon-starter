@@ -42,6 +42,8 @@ Claude loads these by file type. Other agents: read only the files for the area 
 | `.claude/rules/react.md` | Any `.ts` or `.tsx` |
 | `.claude/rules/next.md` | Next.js app (delete if Vite) |
 | `.claude/rules/vite.md` | Vite SPA (delete if Next) |
+| `.claude/rules/aws.md` | Always: host, IAM, deploy (delete if Next) |
+| `.claude/rules/bedrock.md` | Always: model, harness, Qdrant (delete if no model) |
 | `.claude/rules/rust.md` | `.rs`, `Cargo.toml` |
 | `.claude/rules/python.md` | `.py`, `pyproject.toml` |
 | `.claude/rules/contract.md` | `schema/`, or any code that crosses languages |
@@ -59,6 +61,7 @@ Claude loads these by file type. Other agents: read only the files for the area 
 Always:
 - Keep secrets in `.env` (gitignored). Update `.env.example` with the key name.
 - Keep the app runnable. The demo can be pulled at any moment.
+- Deploy Next.js on Vercel (`next.md`). Anything else deploys on AWS (`aws.md`).
 
 Ask first:
 - `git commit`, `git push`, opening a PR

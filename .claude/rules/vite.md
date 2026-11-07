@@ -11,6 +11,6 @@ Delete this file if the project uses Next.js. Use this pack when a Rust or Pytho
 - `[VT-01]` Single-page app. Routing with React Router only if there is more than one screen.
 - `[VT-02]` All server data through TanStack Query, one hook per endpoint in `src/api/`.
 - `[VT-03]` No secrets in the client. Every model call goes through the backend service.
-- `[VT-04]` Backend URL comes from `VITE_API_URL`. Streaming uses SSE.
+- `[VT-04]` Backend URL comes from `VITE_API_URL`, defaulting to `/api` (same origin when deployed). Streaming uses SSE.
 - `[VT-05]` Every live view has a replay or seeded mode, so the demo runs without the backend under load.
-- `[VT-06]` Deploy the static build on Vercel (or any static host). The backend URL is set per environment.
+- `[VT-06]` Deploy on AWS with the backend (`aws.md`): the same box serves the static build.

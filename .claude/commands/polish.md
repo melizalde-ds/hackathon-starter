@@ -7,7 +7,7 @@ Screens: $ARGUMENTS
 
 Read brief §5 (rubric). Say how many hours the design and usability weight justifies before starting: high weight means two to three hours, low weight means readability only.
 
-Use `/impeccable audit` first, then `/impeccable polish`. If the screen is a landing page, use design-taste-frontend; for dashboards and apps, use interface-design.
+Use `/impeccable audit` first, then `/impeccable polish`. Impeccable picks brand mode for landing pages and product mode for apps.
 
 Goals:
 - One obvious primary action per screen, clear hierarchy

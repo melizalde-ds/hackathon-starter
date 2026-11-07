@@ -9,7 +9,7 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 1. **Use this template** → new repo for the event.
 2. Find the idea in the **Hackathon Bank** Claude Project (or `/idea` here).
 3. Fill `brief/brief.md` and the Project section of `AGENTS.md`.
-4. Delete the stack rules you won't use (`next.md` or `vite.md`, `rust.md`, `python.md`, `contract.md`).
+4. Run `/plan`. It picks the deploy path (Next.js → Vercel, anything else → AWS), lists the rules, templates and plugin you won't use, and deletes them when you say yes.
 5. Run the commands in order.
 
 ## Flow
@@ -26,7 +26,7 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 | 8 | Persona reviews | `/persona sponsor Elastic https://...` | |
 | 9 | UI polish, sized by the rubric | `/polish` | |
 
-Agents never commit on their own. `.claude/settings.json` makes `git commit`, `git push`, `gh pr create` and `vercel` ask first.
+Agents never commit on their own. `.claude/settings.json` makes `git commit`, `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh` and `cdk deploy` ask first.
 
 ## Day 0
 
@@ -37,26 +37,31 @@ Costs zero event hours if done before.
 - [ ] Sponsor tools tried in a tiny practice project
 - [ ] Sponsor plugins turned on in `.claude/settings.json` (or added)
 - [ ] Model API keys with credits, plus a second provider for when one hits limits
-- [ ] Deploy target live with a hello world (Vercel for Next or Vite)
-- [ ] Rust or Python service: a hosted spot ready (Fly, Railway, or the homelab)
+- [ ] Deploy target live with a hello world: Vercel for Next, or a Lightsail box over HTTPS for anything else (`aws.md`, `scripts/deploy.sh`)
+- [ ] `hackathon` AWS profile in `us-west-2`, budget alarm, Bedrock model access
 
 ## Layout
 
 ```text
 AGENTS.md            index: project, commands, demo walk, boundaries, gotchas
 CLAUDE.md            imports AGENTS.md
+.gitattributes       LF endings, so WSL/Windows edits can't break the deploy scripts
 .claude/
   settings.json      plugins, commit guard, attribution off
   commands/          /idea /bounty /plan /phase /wow /audit /persona /polish
   rules/             core rules always load; stack rules load by file type
 start/               find-an-idea, sponsors, pick-a-bounty
+deploy/              Caddyfile, systemd unit, box setup, app IAM policy (non-Next stacks)
+scripts/deploy.sh    build, upload and restart on the box
 brief/brief.md       the spec
 plans/               general plan + phase template
 ```
 
-Stack rules: `react.md` (shared TS), `next.md` (Next + Vercel), `vite.md` (Vite SPA), `rust.md` (axum service), `python.md` (FastAPI), `contract.md` (JSON Schema shared across languages). Claude loads them by file type. Other agents use the table in `AGENTS.md`.
+Stack rules: `react.md` (shared TS), `next.md` (Next + Vercel), `vite.md` (Vite SPA), `aws.md` (host picker, IAM and deploy for non-Next stacks), `bedrock.md` (model, agent harness, Qdrant), `rust.md` (axum service), `python.md` (FastAPI), `contract.md` (JSON Schema shared across languages). Claude loads them by file type. Other agents use the table in `AGENTS.md`.
 
 ## Plugins
 
 - `superpowers`: brainstorming, debugging, parallel agents, verification. Skip its subagent-driven development and TDD skills.
+- `vercel`: deploys and docs when the stack is Next.js.
+- `deploy-on-aws`: AWS docs and pricing when the stack isn't Next.js.
 - `impeccable`: UI audit and polish. If you already installed it globally, set it to `false` here so it doesn't load twice.

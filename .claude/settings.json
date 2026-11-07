@@ -4,7 +4,15 @@
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh pr create *)",
-      "Bash(vercel *)"
+      "Bash(vercel *)",
+      "Bash(scripts/deploy.sh *)",
+      "Bash(cdk deploy *)",
+      "Bash(sam deploy *)",
+      "Bash(cargo lambda deploy *)",
+      "Bash(aws * create-*)",
+      "Bash(aws * delete-*)",
+      "Bash(aws * run-instances*)",
+      "Bash(aws * put-*)"
     ],
     "deny": [
       "Read(./.env)",
@@ -28,6 +36,8 @@
     "superpowers@claude-plugins-official": true,
     "impeccable@impeccable": true,
     "dash0@claude-plugins-official": false,
-    "sonarqube@claude-plugins-official": false
+    "sonarqube@claude-plugins-official": false,
+    "vercel@claude-plugins-official": true,
+    "deploy-on-aws@claude-plugins-official": true
   }
 }
