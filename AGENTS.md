@@ -7,7 +7,7 @@
 **[Product]**: [one-line identity from brief/brief.md].
 Built for **[event]**, solo. Stack: [packs in use, e.g. Next.js on Vercel + Rust service].
 
-Read `brief/brief.md` before touching any feature. Phases live in `plans/00-general.md`.
+Read `brief/brief.md` before touching any feature. Phases live in `plans/00-general.md` and run as GitHub issues labeled `phase`.
 
 This is a hackathon build. `.claude/rules/hackathon.md` wins over any stricter rule.
 
@@ -21,6 +21,8 @@ This is a hackathon build. `.claude/rules/hackathon.md` wins over any stricter r
 | Seed demo data | `[...]` |
 | Deploy | `[...]` (ask first) |
 | Live URL | `[...]` |
+
+Ports: each worktree runs its own dev server. Take n from the worktree folder name (`.claude/worktrees/issue-12` gives n = 12). Dev uses `PORT=3000+n` and the API uses `8000+n`. Main uses 3000 and 8000.
 
 ## Walk the demo
 
@@ -50,8 +52,8 @@ Claude loads these by file type. Other agents: read only the files for the area 
 
 ## Workflow
 
-- `[AGT-01]` One phase per session: read the brief, the general plan and that phase's plan. Not the whole repo.
-- `[AGT-02]` Plan the phase as a short checklist in `plans/phase-##-name.md`, then build it.
+- `[AGT-01]` One issue per session, in its own worktree: `claude -w issue-12`, then `/phase 12`. Read the issue, the brief, the general plan and this file. Not the whole repo.
+- `[AGT-02]` The issue is the plan. Build its checklist and tick items in the issue as they finish.
 - `[AGT-03]` Use subagents only to run independent work in parallel. Don't use `superpowers:subagent-driven-development` or `superpowers:test-driven-development`.
 - `[AGT-04]` Use `superpowers:brainstorming` to scope, `superpowers:systematic-debugging` for bugs, `superpowers:verification-before-completion` before saying it works.
 - `[AGT-05]` When something is unclear, pick the reversible option, write the assumption at the top of your report, and keep going. Stop only if the choice changes the demo path or can't be undone.
@@ -62,9 +64,11 @@ Always:
 - Keep secrets in `.env` (gitignored). Update `.env.example` with the key name.
 - Keep the app runnable. The demo can be pulled at any moment.
 - Deploy Next.js on Vercel (`next.md`). Anything else deploys on AWS (`aws.md`).
+- Commit on your issue branch with conventional commits. Never on `main`.
+- Merge PRs with merge commits, never squash. Merge in dependency order, rebased on `main` first.
 
 Ask first:
-- `git commit`, `git push`, opening a PR
+- `git push`, opening a PR
 - Deploying, sending email, calling a paid API in a loop
 - Adding a dependency that isn't in a rules file
 - Editing `brief/`

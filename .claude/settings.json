@@ -1,7 +1,10 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(gh issue *)",
+      "Bash(gh label *)"
+    ],
     "ask": [
-      "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh pr create *)",
       "Bash(vercel *)",
@@ -18,6 +21,19 @@
       "Read(./.env)",
       "Read(./.env.local)",
       "Read(./.env.*.local)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/merge-check.sh"
+          }
+        ]
+      }
     ]
   },
   "attribution": {
