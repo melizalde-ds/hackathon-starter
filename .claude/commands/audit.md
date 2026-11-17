@@ -18,5 +18,9 @@ Also check:
 - Phone width
 - README: identity, live link, demo steps
 - Secrets in the repo
+- Each sponsor in `.claude/sponsors.json` has at least one `Evidence:` trailer that isn't "none" (`git log --format=%B | grep '^Evidence:'`)
+- README has the disclosure line and the live link
+- History has merge commits, not one squash (`git log --merges --oneline`)
+- No phase issue still open or `in-progress` (`gh issue list --label phase --state open`)
 
 Finish with an overall %, and a fix list ranked by rubric weight. Don't fix anything yet.

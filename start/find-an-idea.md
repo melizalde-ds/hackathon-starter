@@ -2,7 +2,7 @@
 
 A great build on the wrong idea loses. Do this before opening an editor.
 
-The idea and data banks live in the **Hackathon Bank** Claude Project, not in this repo. Run the idea finder there so it can pull from them. This file is the method, so any agent can run it too (`/idea`).
+The idea and data banks live in my Hackathon Bank doc, updated from Claude chat. Paste relevant bank lines into the session if you want /idea to use them. This file is the method, so any agent can run it (`/idea`).
 
 ## First: which kind of event?
 

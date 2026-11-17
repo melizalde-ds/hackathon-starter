@@ -7,6 +7,8 @@ Read `start/find-an-idea.md` and `start/sponsors.md`. Event details:
 
 $ARGUMENTS
 
+The idea and data banks live in my Hackathon Bank doc, updated from Claude chat. Paste relevant bank lines into the session if you want /idea to use them. If I pasted none, skip the bank and say so.
+
 1. Say whether this is bounties given, open theme, or both.
 2. Research each sponsor tool and track requirement on the web. Note what data really has an API.
 3. Rank pain points first: from the idea bank and from the event (talks, sponsor docs, the track text). Every idea starts from one of them. Don't invent generic ideas; AI-generated ideas converge across teams.
