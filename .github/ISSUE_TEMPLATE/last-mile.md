@@ -24,7 +24,7 @@ labels: phase, last-mile
 - [ ] Backup video recorded twice (60-90s happy path)
 - [ ] README has the identity, live link and demo steps, and makes sense without the demo
 - [ ] Repo public with no secrets (gitleaks clean)
-- [ ] `scripts/evidence.sh` run on main; every sponsor's proof metric from `docs/evidence.md` is in the submission
+- [ ] `scripts/evidence.sh` run on main, `docs/evidence.md` committed with `ALLOW_MAIN=1 git commit` and pushed; every sponsor's proof metric from `docs/evidence.md` is in the submission
 - [ ] Every submission field filled
 - [ ] Submitted 30+ minutes before the deadline
 - [ ] Screenshot of each demo step, as a fallback

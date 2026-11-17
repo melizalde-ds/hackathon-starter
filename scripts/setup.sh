@@ -6,7 +6,7 @@ git config core.hooksPath .githooks
 echo "Git hooks: .githooks"
 
 missing=0
-for tool in gh gitleaks jq docker; do
+for tool in gh gitleaks jq; do
   if command -v "$tool" >/dev/null 2>&1; then
     echo "ok       $tool"
   else
@@ -14,6 +14,12 @@ for tool in gh gitleaks jq docker; do
     missing=1
   fi
 done
+
+if command -v docker >/dev/null 2>&1; then
+  echo "ok       docker"
+else
+  echo "warning  docker missing (only needed for Qdrant and Rust deploy builds)"
+fi
 
 if command -v gh >/dev/null 2>&1 && ! gh auth status >/dev/null 2>&1; then
   echo "gh is not logged in. Run: gh auth login"
