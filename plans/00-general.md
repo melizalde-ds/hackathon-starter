@@ -4,6 +4,8 @@
 
 **Demo path (one sentence):**
 **Wow moment:** see `brief/brief.md` §2
+**Skeleton deployed by:** [25% of build time]
+**Feature freeze at:** [3h event: 30 min before the end; one-day event: 90 min; 24-48h: 4 hours]. After freeze, fixes only.
 
 ## Phases
 
@@ -13,7 +15,7 @@
 | 02 | | | 03 | # | |
 | 03 | | | 02 | # | |
 | 04 | Wow moment hardened | | | # | |
-| 05 | Last mile: audit, personas, polish | | | # | |
+| 05 | Last mile: audit, personas, polish, timed `/pitch` dry run on the live URL, backup video | | | # | |
 
 ## Requirements
 

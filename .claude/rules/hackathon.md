@@ -29,12 +29,13 @@ These win over any stricter rule in other files. This is a demo, not production.
 - `[HACK-14]` Phone width must not look broken. Judges open links on phones.
 - `[HACK-15]` Realistic seed data. No "test test" or lorem ipsum on the demo path.
 - `[HACK-16]` The wow moment in `brief/brief.md` gets protected first: seeded, cached, and working cold.
-- `[HACK-17]` `README.md` always has the one-line identity, live link and demo steps.
+- `[HACK-17]` `README.md` meets the Must-haves in `.github/ISSUE_TEMPLATE/last-mile.md`.
 
 ## Last mile
 
 - `[HACK-18]` Audit against the brief in a fresh session (`/audit`).
 - `[HACK-19]` Persona reviews: architect, UX lead, the sponsor (`/persona`).
 - `[HACK-20]` UI polish hours follow the rubric's design weight (`/polish`).
-- `[HACK-21]` Ship a live URL the judge can touch. Record a backup run too.
-- `[HACK-22]` Fill every submission field before the deadline. A rough submitted project beats a great unsubmitted one.
+- `[HACK-21]` Ship a live URL and a backup video. The Must-haves in `.github/ISSUE_TEMPLATE/last-mile.md` are the list.
+- `[HACK-22]` Submit early with every field filled (Must-haves). A rough submitted project beats a great unsubmitted one.
+- `[HACK-23]` Present cuts as decisions ("we cut X to make Y solid"), never as "ran out of time".

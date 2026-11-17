@@ -10,6 +10,8 @@
 
 <!-- What a judge repeats to another judge. -->
 
+This is also the first sentence of the pitch. A judge must be able to repeat it to another judge.
+
 ## 2. Wow moment
 
 <!-- The one thing the judge sees and remembers, in under 90 seconds. Be exact: what is on screen, what changes, why it's surprising. -->
@@ -21,6 +23,8 @@
 ## 3. The problem
 
 <!-- One paragraph. A specific person and their pain. -->
+
+**Impact number:** one before/after metric and where it comes from (e.g. 857 ms -> 20 ms, 25 calls -> 7, 4 hours -> 4 minutes).
 
 ## 4. The hard part
 
@@ -70,3 +74,12 @@
 ## 12. Open questions
 
 -
+
+## 13. Pitch
+
+<!-- /pitch writes the script from this. Lead with the problem, never the market. -->
+
+- **Who:** one person, one moment.
+- **Wow line:** what you say as the wow moment lands.
+- **Hard part line:** one sentence from §4.
+- **What's next:**
