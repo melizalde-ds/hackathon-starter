@@ -8,7 +8,7 @@ For each bounty: brief, rubric, prize, and any data or APIs provided.
 
 ## 2. Research
 
-Run `/bounty` (or the Hackathon Bank Project). You want: who the sponsor is, what they care about, what exists already, where the hard part is.
+Run `/bounty`. The idea and data banks live in my Hackathon Bank doc, updated from Claude chat. Paste relevant bank lines into the session if you want /idea to use them. You want: who the sponsor is, what they care about, what exists already, where the hard part is.
 
 ## 3. Check the data
 

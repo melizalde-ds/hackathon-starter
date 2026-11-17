@@ -33,3 +33,4 @@ One build, several prizes. Niche tracks often have little competition.
 
 - Name the sponsor tool and the exact thing it did. Show it, don't list it.
 - Make their tool look like the hero of one moment.
+- Say the proof metric out loud, with the number.

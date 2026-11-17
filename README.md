@@ -7,7 +7,7 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 ## Use it
 
 1. **Use this template** → new repo for the event. Clone it and run `scripts/setup.sh`. It turns on the git hooks, which don't copy with templates.
-2. Find the idea in the **Hackathon Bank** Claude Project (or `/idea` here).
+2. Find the idea with `/idea`. The idea and data banks live in my Hackathon Bank doc, updated from Claude chat. Paste relevant bank lines into the session if you want /idea to use them.
 3. Fill `brief/brief.md` and the Project section of `AGENTS.md`.
 4. Run `/plan`. It picks the deploy path (Next.js → Vercel, anything else → AWS), lists the rules, templates and plugin you won't use, and deletes them when you say yes. Then it opens one GitHub issue per phase.
 5. Push main first: worktrees start from `origin/HEAD`, so no `claude -w` session may start before the brief and plan are pushed. Then run each issue in its own worktree: `claude -w issue-12`, then `/phase 12`. Issues with no open dependencies run in parallel.
@@ -28,6 +28,7 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 | 9 | UI polish, sized by the rubric | `/polish` | |
 | 10 | Pitch script, Q&A bank, timed dry run | `/pitch 3` | `docs/pitch.md` |
 | 11 | Submit: every Must-have ticked | | `.github/ISSUE_TEMPLATE/last-mile.md` |
+| 12 | Retro after the event | `/retro` | `docs/retro.md` |
 
 Agents commit on their own issue branch. The pre-commit hook blocks commits on `main` (unless `ALLOW_MAIN=1`) and runs gitleaks on staged changes. After each commit, a Claude hook warns if the branch already conflicts with `main`. `.claude/settings.json` makes `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh`, `cdk deploy` and AWS writes ask first. Merge PRs with merge commits, never squash, in dependency order.
 
@@ -35,6 +36,7 @@ Agents commit on their own issue branch. The pre-commit hook blocks commits on `
 
 Solo is the default. For a team, answer "team" when `/plan` asks and list each person's name and GitHub handle.
 
+- Each person clones the repo, runs `scripts/setup.sh` and `gh auth login`. Git hooks are set per clone.
 - Each person runs agents under their own `gh` login. Agents take only issues assigned to that login.
 - Each issue touches only its owner's folders, and no two issues share a folder.
 - `brief/` and `schema/` have one owner each. Everyone else opens an issue to change them.
@@ -44,6 +46,7 @@ Solo is the default. For a team, answer "team" when `/plan` asks and list each p
 
 Costs zero event hours if done before.
 
+- [ ] Arch: `paru -S github-cli gitleaks jq` (optional `shellcheck` for kit scripts). macOS: `brew install gh gitleaks jq`.
 - [ ] Event repo made from this template, `scripts/setup.sh` run clean
 - [ ] `gh auth status` shows you logged in
 - [ ] Read the event rules for: pre-existing code, starter templates, AI disclosure, team size, public repo
@@ -64,7 +67,7 @@ CLAUDE.md            imports AGENTS.md
   settings.json      plugins, push and deploy guard, merge-check hook, attribution off
   sponsors.json      per-sponsor markers the commit-msg hook looks for
   hooks/             merge-check.sh: warns after a commit that conflicts with main
-  commands/          /idea /bounty /plan /phase /wow /audit /persona /polish /pitch
+  commands/          /idea /bounty /plan /phase /wow /audit /persona /polish /pitch /retro
   rules/             core rules always load; stack rules load by file type
 start/               find-an-idea, sponsors, pick-a-bounty
 deploy/              Caddyfile, systemd unit, box setup, app IAM policy (non-Next stacks)
@@ -93,3 +96,9 @@ Keep this line in the event repo's README:
 - `vercel`: deploys and docs when the stack is Next.js.
 - `deploy-on-aws`: AWS docs and pricing when the stack isn't Next.js.
 - `impeccable`: UI audit and polish. If you already installed it globally, set it to `false` here so it doesn't load twice.
+
+## Improve it
+
+- Run `/retro` after each event and add it to the Hackathon Bank doc.
+- When a lesson shows up at two events, change a rule here.
+- When an agent makes the same mistake twice, add it to Gotchas in `AGENTS.md`. If it's general, add it here too.
