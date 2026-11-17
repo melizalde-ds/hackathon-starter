@@ -33,9 +33,11 @@ Most teams build the obvious version. Winners solve the hard part.
 
 1 to 5 each. Keep the top one; keep the runner-up as plan B until hour one ends.
 
-| Idea | Pain is real | Data exists | One-line identity | Wow in 90s | Sponsor looks good | Your edge | Total |
-|------|--------------|-------------|-------------------|------------|--------------------|-----------|-------|
-|      |              |             |                   |            |                    |           |       |
+| Idea | Pain is real | Data exists | One-line identity | Wow in 90s | Sponsor looks good | Your edge | Crowding | Total |
+|------|--------------|-------------|-------------------|------------|--------------------|-----------|----------|-------|
+|      |              |             |                   |            |                    |           |          |       |
+
+Crowding: how many teams will build the obvious version? 5 = almost none, 1 = everyone. At Cloud Native Hackathon (110 projects, theme "make conferences better") about 10 teams built live captions and 15+ built talk recommenders. Nautilus won the Elasticsearch track with a narrow angle on that crowded space: jargon explainer cards in about 800 ms. Prefer the narrow angle.
 
 ## Your formula
 

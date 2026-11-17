@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+message_file=$1
+sponsors_file=.claude/sponsors.json
+
+[[ -s $sponsors_file ]] || exit 0
+[[ -f $(git rev-parse --git-path MERGE_HEAD) ]] && exit 0
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "commit-msg: jq is not installed, so sponsor evidence can't be checked." >&2
+  echo "Install it: https://jqlang.org/download/ (Arch: pacman -S jq, macOS: brew install jq)" >&2
+  exit 1
+fi
+
+diff=$(git diff --cached -- . ":(exclude)$sponsors_file")
+[[ -n $diff ]] || exit 0
+trailers=$(git interpret-trailers --parse "$message_file")
+
+missing=()
+while IFS= read -r sponsor; do
+  touched=0
+  while IFS= read -r marker; do
+    if [[ -n $marker ]] && grep -qF -- "$marker" <<<"$diff"; then
+      touched=1
+      break
+    fi
+  done < <(jq -r --arg sponsor "$sponsor" '.[$sponsor][]' "$sponsors_file")
+
+  if ((touched)) && ! grep -qiE "^Evidence: *${sponsor} *\|" <<<"$trailers"; then
+    missing+=("$sponsor")
+  fi
+done < <(jq -r 'keys[]' "$sponsors_file")
+
+((${#missing[@]} == 0)) && exit 0
+
+{
+  echo "commit-msg: this commit touches code for: ${missing[*]}"
+  echo "Add one Evidence trailer per sponsor at the end of the message, after a blank line:"
+  echo
+  for sponsor in "${missing[@]}"; do
+    echo "  Evidence: $sponsor | search p95 857ms -> 20ms | trace link or file"
+    echo "  Evidence: $sponsor | none"
+  done
+  echo
+  echo "Use a real before/after number when you have one, otherwise 'none'."
+} >&2
+exit 1
