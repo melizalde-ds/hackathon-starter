@@ -10,7 +10,7 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 2. Find the idea in the **Hackathon Bank** Claude Project (or `/idea` here).
 3. Fill `brief/brief.md` and the Project section of `AGENTS.md`.
 4. Run `/plan`. It picks the deploy path (Next.js → Vercel, anything else → AWS), lists the rules, templates and plugin you won't use, and deletes them when you say yes. Then it opens one GitHub issue per phase.
-5. Run each issue in its own worktree: `claude -w issue-12`, then `/phase 12`. Issues with no open dependencies run in parallel.
+5. Push main first: worktrees start from `origin/HEAD`, so no `claude -w` session may start before the brief and plan are pushed. Then run each issue in its own worktree: `claude -w issue-12`, then `/phase 12`. Issues with no open dependencies run in parallel.
 6. Run the rest of the commands in order.
 
 ## Flow

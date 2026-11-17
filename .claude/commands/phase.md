@@ -9,7 +9,7 @@ Run this inside the issue's worktree: `claude -w issue-$ARGUMENTS`.
 
 Read the issue (`gh issue view $ARGUMENTS`), `brief/brief.md`, `plans/00-general.md` and `AGENTS.md`. Only the rules for the files you touch.
 
-1. Claim it. If the issue has the `in-progress` or `blocked` label, stop and tell me. Otherwise run `gh issue edit $ARGUMENTS --add-label in-progress` and `gh issue comment $ARGUMENTS --body "Claimed by worktree issue-$ARGUMENTS"`. Claim by label, never by assignee. Team mode (`AGENTS.md` has a "Team" section): if the issue is assigned to someone other than `gh api user -q .login`, stop and tell me.
+1. Claim it. If `brief/brief.md` still has `[` brackets, stop and tell me: main wasn't pushed with the filled brief, and worktrees start from `origin/HEAD`. If the issue has the `in-progress` or `blocked` label, stop and tell me. Otherwise run `gh issue edit $ARGUMENTS --add-label in-progress` and `gh issue comment $ARGUMENTS --body "Claimed by worktree issue-$ARGUMENTS"`. Claim by label, never by assignee. Team mode (`AGENTS.md` has a "Team" section): if the issue is assigned to someone other than `gh api user -q .login`, stop and tell me.
 2. Work on branch `worktree-issue-$ARGUMENTS`, the one `claude -w` created.
 3. Use ports from `AGENTS.md` Commands: 3000+n for dev, 8000+n for the API.
 4. Build the checklist. Use subagents only for parts that are truly independent.
