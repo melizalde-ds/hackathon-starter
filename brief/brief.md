@@ -3,7 +3,7 @@
 <!-- Fill at kickoff. Agents read this before building any feature. Editing it is "ask first". -->
 
 **Event:** [name, date, place / online]
-**Format:** solo · [build time] · [demo length + Q&A]
+**Format:** [solo | team of N] · [build time] · [demo length + Q&A]
 **Tracks:** [main track] + [stacked tracks]
 
 ## 1. One-line identity

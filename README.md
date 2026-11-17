@@ -1,6 +1,6 @@
 # Hackathon Starter
 
-My kit for solo hackathons with AI agents. Short in-person events, 24 to 48 hour weekends, and online multi-day builds.
+My kit for hackathons with AI agents, solo by default with an optional team mode. Short in-person events, 24 to 48 hour weekends, and online multi-day builds.
 
 Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizarazo/hackathon-starter-kit).
 
@@ -28,6 +28,15 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 | 9 | UI polish, sized by the rubric | `/polish` | |
 
 Agents commit on their own issue branch. The pre-commit hook blocks commits on `main` (unless `ALLOW_MAIN=1`) and runs gitleaks on staged changes. After each commit, a Claude hook warns if the branch already conflicts with `main`. `.claude/settings.json` makes `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh`, `cdk deploy` and AWS writes ask first. Merge PRs with merge commits, never squash, in dependency order.
+
+## Team mode
+
+Solo is the default. For a team, answer "team" when `/plan` asks and list each person's name and GitHub handle.
+
+- Each person runs agents under their own `gh` login. Agents take only issues assigned to that login.
+- Each issue touches only its owner's folders, and no two issues share a folder.
+- `brief/` and `schema/` have one owner each. Everyone else opens an issue to change them.
+- Roles: problem owner, builder, storyteller. See `AGENTS.md`.
 
 ## Day 0
 

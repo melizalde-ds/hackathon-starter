@@ -5,11 +5,27 @@
 ## Project
 
 **[Product]**: [one-line identity from brief/brief.md].
-Built for **[event]**, solo. Stack: [packs in use, e.g. Next.js on Vercel + Rust service].
+Built for **[event]**, [solo | team of N]. Stack: [packs in use, e.g. Next.js on Vercel + Rust service].
 
 Read `brief/brief.md` before touching any feature. Phases live in `plans/00-general.md` and run as GitHub issues labeled `phase`.
 
 This is a hackathon build. `.claude/rules/hackathon.md` wins over any stricter rule.
+
+## Team
+
+<!-- Team mode only. /plan deletes this section for solo builds. -->
+
+| Person | GitHub handle | Role | Folders owned |
+|--------|---------------|------|---------------|
+|        |               |      |               |
+
+Owner of `brief/`: [handle]. Owner of `schema/`: [handle].
+
+Roles split by decision, not code. One person can hold two.
+
+- Problem owner: guards the demo path and decides cuts.
+- Builder: runs agents, reviews and tests.
+- Storyteller: design, pitch and demo, from hour one.
 
 ## Commands
 
@@ -78,6 +94,11 @@ Never:
 - Build what the brief says is out of scope
 - Put a model in the decision path (see `ai.md`)
 - Add `Co-Authored-By` or "Generated with" lines
+
+Team mode only (`/plan` deletes this block for solo builds). Your owner is `gh api user -q .login`.
+- Take only issues assigned to your owner: `gh issue list --assignee <handle> --label phase`. The assignee is the person. The `in-progress` label is the agent's claim.
+- Touch only your owner's folders. Anything else is "ask first".
+- `brief/` and `schema/` each have one named owner (see Team). If you aren't that owner's agent, don't edit them. Open an issue instead.
 
 ## Gotchas
 
