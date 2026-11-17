@@ -4,6 +4,8 @@ description: Audit the build against the brief in a fresh session
 
 You didn't build this. Read `brief/brief.md` and `plans/00-general.md`, then audit the code and the running app (see "Walk the demo" in `AGENTS.md`).
 
+First check the brief. If §1 (one-line identity) or the §3 impact number is missing, the audit fails. Say so at the top and stop there.
+
 For each requirement in brief §6:
 - Score 0 to 100% done
 - Where it lives (file or screen)

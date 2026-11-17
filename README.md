@@ -26,6 +26,8 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 | 7 | Fresh-session audit | `/audit` | |
 | 8 | Persona reviews | `/persona sponsor Elastic https://...` | |
 | 9 | UI polish, sized by the rubric | `/polish` | |
+| 10 | Pitch script, Q&A bank, timed dry run | `/pitch 3` | `docs/pitch.md` |
+| 11 | Submit: every Must-have ticked | | `.github/ISSUE_TEMPLATE/last-mile.md` |
 
 Agents commit on their own issue branch. The pre-commit hook blocks commits on `main` (unless `ALLOW_MAIN=1`) and runs gitleaks on staged changes. After each commit, a Claude hook warns if the branch already conflicts with `main`. `.claude/settings.json` makes `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh`, `cdk deploy` and AWS writes ask first. Merge PRs with merge commits, never squash, in dependency order.
 
@@ -60,14 +62,14 @@ CLAUDE.md            imports AGENTS.md
 .claude/
   settings.json      plugins, push and deploy guard, merge-check hook, attribution off
   hooks/             merge-check.sh: warns after a commit that conflicts with main
-  commands/          /idea /bounty /plan /phase /wow /audit /persona /polish
+  commands/          /idea /bounty /plan /phase /wow /audit /persona /polish /pitch
   rules/             core rules always load; stack rules load by file type
 start/               find-an-idea, sponsors, pick-a-bounty
 deploy/              Caddyfile, systemd unit, box setup, app IAM policy (non-Next stacks)
 scripts/deploy.sh    build, upload and restart on the box
 brief/brief.md       the spec
 plans/               general plan (phases link to issues)
-.github/ISSUE_TEMPLATE/  phase issue template
+.github/ISSUE_TEMPLATE/  phase and last-mile issue templates
 .githooks/           pre-commit: no commits on main, gitleaks on staged changes
 scripts/setup.sh     turns on .githooks, checks gh, gitleaks, docker
 .worktreeinclude     copies .env files into new worktrees

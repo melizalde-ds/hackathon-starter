@@ -19,7 +19,7 @@ Read `brief/brief.md` and `AGENTS.md`. Fill `plans/00-general.md`.
 Then turn the phases into GitHub issues. Labels don't copy with "Use this template", so always create them:
 
 1. Run `gh label create --force` for `phase`, `blocked`, `in-progress`, `wow` and `last-mile`.
-2. Open one issue per phase from `.github/ISSUE_TEMPLATE/phase.md` with `gh issue create --label phase`. Add `wow` to the wow phase and `last-mile` to the last one. Fill every field. "Depends on" lists issue numbers, so open blocking phases first.
+2. Open one issue per phase from `.github/ISSUE_TEMPLATE/phase.md` with `gh issue create --label phase`. Add `wow` to the wow phase. The last phase uses `.github/ISSUE_TEMPLATE/last-mile.md` and the `last-mile` label. Fill every field. "Depends on" lists issue numbers, so open blocking phases first.
 3. Add `blocked` to every issue whose dependencies are still open.
 4. Team mode: assign each issue to the owner of the folders it touches (`--assignee <handle>`). Folder sets must not overlap between issues, because most agent merge conflicts come from overlapping files. If two issues need the same folder, ask me how to split it.
 5. Write the issue numbers into the table in `plans/00-general.md`.
