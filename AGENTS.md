@@ -73,6 +73,8 @@ Claude loads these by file type. Other agents: read only the files for the area 
 - `[AGT-03]` Use subagents only to run independent work in parallel. Don't use `superpowers:subagent-driven-development` or `superpowers:test-driven-development`.
 - `[AGT-04]` Use `superpowers:brainstorming` to scope, `superpowers:systematic-debugging` for bugs, `superpowers:verification-before-completion` before saying it works.
 - `[AGT-05]` When something is unclear, pick the reversible option, write the assumption at the top of your report, and keep going. Stop only if the choice changes the demo path or can't be undone.
+- `[AGT-06]` A real trade-off gets a short decision record (`docs/decisions/0000-template.md`). A real failure gets a short incident note (`docs/incidents/0000-template.md`). Number them in order, a few lines each.
+- `[AGT-07]` When a commit touches a sponsor's markers (`.claude/sponsors.json`), add an `Evidence:` trailer. Use a real number when you have one: `Evidence: dash0 | search p95 857ms -> 20ms | trace link or file`. Otherwise `Evidence: dash0 | none`. The commit-msg hook rejects the commit without it. `/pitch` and the submission read `docs/evidence.md`, which `scripts/evidence.sh` builds on main.
 
 ## Boundaries
 

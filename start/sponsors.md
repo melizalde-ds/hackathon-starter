@@ -18,6 +18,8 @@ Sponsors are usually the judges. Their test: "If we reward this, do we look good
 One build, several prizes. Niche tracks often have little competition.
 
 - A tool counts only if it's core to the build, not bolted on. Judges spot a token integration fast.
+- The sponsor tool drives a visible part of the product, not a side integration. CapyKube's mascot mood came from a Dash0 latency target.
+- Every sponsor gets one proof metric: before/after with a number. Cloud Native winners: an Agent0 patch cut Elasticsearch calls 25 -> 7; Dash0 traces led to search 857 ms -> 20 ms; Radar took the cluster from 3 findings to 0; Gitar caught a real auth bypass. Record each one as an `Evidence:` commit trailer (`AGENTS.md`).
 - Pick tracks whose requirements share one demo moment (for example, one live "find and fix" moment that shows two observability tools at once).
 - Drop the weakest track first if time runs short.
 

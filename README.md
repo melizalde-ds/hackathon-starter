@@ -46,6 +46,7 @@ Costs zero event hours if done before.
 
 - [ ] Event repo made from this template, `scripts/setup.sh` run clean
 - [ ] `gh auth status` shows you logged in
+- [ ] Read the event rules for: pre-existing code, starter templates, AI disclosure, team size, public repo
 - [ ] Idea picked, brief filled
 - [ ] Sponsor tools tried in a tiny practice project
 - [ ] Sponsor plugins turned on in `.claude/settings.json` (or added)
@@ -61,6 +62,7 @@ CLAUDE.md            imports AGENTS.md
 .gitattributes       LF endings, so WSL/Windows edits can't break the deploy scripts
 .claude/
   settings.json      plugins, push and deploy guard, merge-check hook, attribution off
+  sponsors.json      per-sponsor markers the commit-msg hook looks for
   hooks/             merge-check.sh: warns after a commit that conflicts with main
   commands/          /idea /bounty /plan /phase /wow /audit /persona /polish /pitch
   rules/             core rules always load; stack rules load by file type
@@ -70,12 +72,20 @@ scripts/deploy.sh    build, upload and restart on the box
 brief/brief.md       the spec
 plans/               general plan (phases link to issues)
 .github/ISSUE_TEMPLATE/  phase and last-mile issue templates
-.githooks/           pre-commit: no commits on main, gitleaks on staged changes
-scripts/setup.sh     turns on .githooks, checks gh, gitleaks, docker
+.githooks/           pre-commit: no commits on main, gitleaks; commit-msg: sponsor Evidence trailers
+scripts/setup.sh     turns on .githooks, checks gh, gitleaks, jq, docker
+scripts/evidence.sh  builds docs/evidence.md from Evidence trailers (main only)
+docs/                decision and incident templates, evidence, pitch
 .worktreeinclude     copies .env files into new worktrees
 ```
 
 Stack rules: `react.md` (shared TS), `next.md` (Next + Vercel), `vite.md` (Vite SPA), `aws.md` (host picker, IAM and deploy for non-Next stacks), `bedrock.md` (model, agent harness, Qdrant), `rust.md` (axum service), `python.md` (FastAPI), `contract.md` (JSON Schema shared across languages). Claude loads them by file type. Other agents use the table in `AGENTS.md`.
+
+## Disclosure
+
+Keep this line in the event repo's README:
+
+> Built on my MIT [hackathon-starter](https://github.com/melizalde-ds/hackathon-starter). Kit files are listed in the first commit. Everything else was written during the event.
 
 ## Plugins
 
