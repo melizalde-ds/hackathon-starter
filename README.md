@@ -6,11 +6,12 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 
 ## Use it
 
-1. **Use this template** → new repo for the event.
+1. **Use this template** → new repo for the event. Clone it and run `scripts/setup.sh`. It turns on the git hooks, which don't copy with templates.
 2. Find the idea in the **Hackathon Bank** Claude Project (or `/idea` here).
 3. Fill `brief/brief.md` and the Project section of `AGENTS.md`.
-4. Run `/plan`. It picks the deploy path (Next.js → Vercel, anything else → AWS), lists the rules, templates and plugin you won't use, and deletes them when you say yes.
-5. Run the commands in order.
+4. Run `/plan`. It picks the deploy path (Next.js → Vercel, anything else → AWS), lists the rules, templates and plugin you won't use, and deletes them when you say yes. Then it opens one GitHub issue per phase.
+5. Run each issue in its own worktree: `claude -w issue-12`, then `/phase 12`. Issues with no open dependencies run in parallel.
+6. Run the rest of the commands in order.
 
 ## Flow
 
@@ -19,20 +20,21 @@ Inspired by [Juan Lizarazo's hackathon-starter-kit](https://github.com/juanlizar
 | 1 | Find the idea or the angle | `/idea` or `/bounty` | `start/` |
 | 2 | Stack sponsor tracks, talk to sponsors | | `start/sponsors.md` |
 | 3 | Brief: identity, wow moment, rubric, scope | | `brief/brief.md` |
-| 4 | General plan, blocking phase first | `/plan` | `plans/00-general.md` |
-| 5 | One phase per session, parallel when possible | `/phase 02 src/feature` | `plans/phase-template.md` |
+| 4 | General plan and one issue per phase, blocking phase first | `/plan` | `plans/00-general.md` |
+| 5 | One issue per worktree session, parallel when possible | `claude -w issue-12`, then `/phase 12` | `.github/ISSUE_TEMPLATE/phase.md` |
 | 6 | Check the wow moment | `/wow` | |
 | 7 | Fresh-session audit | `/audit` | |
 | 8 | Persona reviews | `/persona sponsor Elastic https://...` | |
 | 9 | UI polish, sized by the rubric | `/polish` | |
 
-Agents never commit on their own. `.claude/settings.json` makes `git commit`, `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh` and `cdk deploy` ask first.
+Agents commit on their own issue branch. The pre-commit hook blocks commits on `main` (unless `ALLOW_MAIN=1`) and runs gitleaks on staged changes. After each commit, a Claude hook warns if the branch already conflicts with `main`. `.claude/settings.json` makes `git push`, `gh pr create`, `vercel`, `scripts/deploy.sh`, `cdk deploy` and AWS writes ask first. Merge PRs with merge commits, never squash, in dependency order.
 
 ## Day 0
 
 Costs zero event hours if done before.
 
-- [ ] Event repo made from this template
+- [ ] Event repo made from this template, `scripts/setup.sh` run clean
+- [ ] `gh auth status` shows you logged in
 - [ ] Idea picked, brief filled
 - [ ] Sponsor tools tried in a tiny practice project
 - [ ] Sponsor plugins turned on in `.claude/settings.json` (or added)
@@ -47,14 +49,19 @@ AGENTS.md            index: project, commands, demo walk, boundaries, gotchas
 CLAUDE.md            imports AGENTS.md
 .gitattributes       LF endings, so WSL/Windows edits can't break the deploy scripts
 .claude/
-  settings.json      plugins, commit guard, attribution off
+  settings.json      plugins, push and deploy guard, merge-check hook, attribution off
+  hooks/             merge-check.sh: warns after a commit that conflicts with main
   commands/          /idea /bounty /plan /phase /wow /audit /persona /polish
   rules/             core rules always load; stack rules load by file type
 start/               find-an-idea, sponsors, pick-a-bounty
 deploy/              Caddyfile, systemd unit, box setup, app IAM policy (non-Next stacks)
 scripts/deploy.sh    build, upload and restart on the box
 brief/brief.md       the spec
-plans/               general plan + phase template
+plans/               general plan (phases link to issues)
+.github/ISSUE_TEMPLATE/  phase issue template
+.githooks/           pre-commit: no commits on main, gitleaks on staged changes
+scripts/setup.sh     turns on .githooks, checks gh, gitleaks, docker
+.worktreeinclude     copies .env files into new worktrees
 ```
 
 Stack rules: `react.md` (shared TS), `next.md` (Next + Vercel), `vite.md` (Vite SPA), `aws.md` (host picker, IAM and deploy for non-Next stacks), `bedrock.md` (model, agent harness, Qdrant), `rust.md` (axum service), `python.md` (FastAPI), `contract.md` (JSON Schema shared across languages). Claude loads them by file type. Other agents use the table in `AGENTS.md`.

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+branch=$(git symbolic-ref --short -q HEAD || true)
+if [[ $branch == "main" && ${ALLOW_MAIN:-} != "1" ]]; then
+  echo "pre-commit: commits on main are blocked. Work on your issue branch, or run with ALLOW_MAIN=1." >&2
+  exit 1
+fi
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not installed, so staged changes can't be scanned for secrets." >&2
+  echo "Install it: https://github.com/gitleaks/gitleaks#installing (Arch: pacman -S gitleaks, macOS: brew install gitleaks)" >&2
+  exit 1
+fi
+
+if gitleaks help git >/dev/null 2>&1; then
+  gitleaks git --staged --redact --no-banner
+else
+  gitleaks protect --staged --redact --no-banner
+fi

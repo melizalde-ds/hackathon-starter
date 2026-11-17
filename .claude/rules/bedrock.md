@@ -28,9 +28,9 @@ Pick one per project. Each swaps Bedrock for another provider with a one-line ch
 
 ## Embeddings + Qdrant
 
-- `[BR-10]` Vectors live in Qdrant (`qdrant/qdrant:v1.20.0`), in Docker locally and on the box (`aws.md`). `QDRANT_URL` from env, no API key: it only listens on 127.0.0.1.
+- `[BR-10]` Vectors live in Qdrant (`qdrant/qdrant:v1.20.0`), in Docker locally and on the box (`aws.md`). `QDRANT_URL` from env, no API key: it only listens on 127.0.0.1. Worktrees share one Qdrant, so the collection name gets the worktree name as a suffix (`docs_issue-12`). Main uses no suffix.
 - `[BR-11]` Seed the box's Qdrant through a tunnel, not from the box: `ssh -L 6334:127.0.0.1:6333 ubuntu@<host>`, then run the seed with `QDRANT_URL=http://localhost:6334`.
-- `[BR-12]` Embeddings: Titan Text Embeddings V2 (`amazon.titan-embed-text-v2:0`). The model and dimension at query time match the ones the collection was loaded with.
+- `[BR-12]` Embeddings: Titan Text Embeddings V2 (`amazon.titan-embed-text-v2:0`). The model and dimension at query time match the ones the collection was loaded with. Seed and query the same suffixed collection (BR-10).
 - `[BR-13]` Embed once, in the seed script, never on the demo path. A new account is throttled to about 0.6 calls a second: use adaptive retries and cache what you embed.
 
 ## Day 0

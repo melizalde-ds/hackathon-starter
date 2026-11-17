@@ -11,6 +11,13 @@ Read `brief/brief.md` and `AGENTS.md`. Fill `plans/00-general.md`.
 - List what we cut on purpose and why.
 - Anything that doesn't trace to the rubric or the demo path gets cut.
 
+Then turn the phases into GitHub issues. Labels don't copy with "Use this template", so always create them:
+
+1. Run `gh label create --force` for `phase`, `blocked`, `in-progress`, `wow` and `last-mile`.
+2. Open one issue per phase from `.github/ISSUE_TEMPLATE/phase.md` with `gh issue create --label phase`. Add `wow` to the wow phase and `last-mile` to the last one. Fill every field. "Depends on" lists issue numbers, so open blocking phases first.
+3. Add `blocked` to every issue whose dependencies are still open.
+4. Write the issue numbers into the table in `plans/00-general.md`.
+
 Then clean up the kit for this stack:
 
 1. Pick the host: Next.js → Vercel; anything else → the host table in `aws.md`. Then list what goes: `.claude/rules/` packs that don't apply (`bedrock.md` if there's no model), the deploy plugin we won't use (`vercel` or `deploy-on-aws`), `deploy/` + `scripts/deploy.sh` for Next.js or Lambda-only, `.env.example` lines for unused services, `.gitignore` sections for unused languages, and the `.gitattributes` lines that apply.
